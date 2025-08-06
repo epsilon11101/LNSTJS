@@ -49,4 +49,11 @@ export class CarsService {
 
     return updatedCar;
   }
+
+  delete(id: string) {
+    const carDB = this.findOneById(id);
+
+    this.cars = this.cars.filter((car) => car.id !== carDB.id);
+    return this.cars;
+  }
 }
