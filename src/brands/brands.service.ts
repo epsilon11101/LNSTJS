@@ -6,13 +6,7 @@ import { v4 as uuid } from 'uuid';
 import { removeUndefined } from 'src/common/utils/object.util';
 @Injectable()
 export class BrandsService {
-  private brands: Brand[] = [
-    {
-      id: uuid(),
-      name: 'toyota',
-      createdAt: new Date().getTime(),
-    },
-  ];
+  private brands: Brand[];
 
   create(createBrandDto: CreateBrandDto) {
     const new_brand = {
@@ -55,5 +49,9 @@ export class BrandsService {
     const dbId = this.findOne(id);
     this.brands = this.brands.filter((brand) => brand.id !== dbId.id);
     return this.brands;
+  }
+
+  fillWithSeed(brands: Brand[]) {
+    this.brands = brands;
   }
 }
